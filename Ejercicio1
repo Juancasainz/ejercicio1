@@ -1,0 +1,35 @@
+flag=0; #un flag
+
+puts 'Introduce el arreglo separado por comas:'
+a = gets.split(',')
+
+a.each{ |num| #validacion de cada item del arreglo
+begin
+	Integer(num) 
+rescue ArgumentError 
+	puts 'Introduzca solo numeros >:c'
+	return
+end
+}
+
+puts 'Introduce el target'#validacion del target
+begin
+	t = Integer(gets)
+rescue
+	puts 'Introduzca solo numeros >:c'
+	return
+end
+
+sumas = a.combination(2).to_a.each{ |sum| #combina el arreglo de dos en dos y suma cada resultado
+	total = Integer(sum[0]) + Integer(sum[1])
+	if total == t #Se cumplio el target
+		puts 'Yuju! Los index son: ' + String(a.index(String(sum[0]))+1) +  
+		' y ' + String(a.index(String(sum[1]))+1)
+		flag=1
+	end
+}
+
+if flag==0 # Si el flag permanece en cero no se cumplio el target :c
+puts 'No hay numeros asi :c'
+end
+    		
